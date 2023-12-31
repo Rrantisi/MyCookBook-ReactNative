@@ -20,7 +20,6 @@ export default function Discover() {
     </View>
   )}
 
-
   // handle fetch data for random meal section
   const fetchData = async () => {
     try {
@@ -35,6 +34,7 @@ export default function Discover() {
     <View style={styles.textContainer}>
       <ScrollView>
         {data.strMealThumb && (
+          // TODO: add navigation to detail page
           <TouchableOpacity style={{height: 400, marginBottom: 2}}>
             <Image source={{ uri: data.strMealThumb}} style={{width: '100%', height: '100%', resizeMode: 'cover'}} />
           </TouchableOpacity>
