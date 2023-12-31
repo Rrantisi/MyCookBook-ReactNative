@@ -20,7 +20,7 @@ export default function Discover() {
   )}
 
 
-  // handle fetch data:
+  // handle fetch data for random meal section
   const fetchData = async () => {
     try {
       const response = await axios.get('https://themealdb.com/api/json/v1/1/random.php');
