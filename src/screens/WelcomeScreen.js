@@ -14,12 +14,12 @@ export default function WelcomeScreen() {
   const navigation = useNavigation();
   const [isImageLoaded, setImageLoaded] = useState(false);
 
-    useEffect(() => {
-      // Navigate to main page once logo has loaded
-      setTimeout(() => {
-        navigation.navigate('Main')
-      }, 6000)
-    }, [])
+  useEffect(() => {
+    // Navigate to main page once logo has loaded
+    setTimeout(() => {
+      navigation.navigate('Main')
+    }, 6000)
+  }, [])
 
   const [fontsLoaded, fontError] = useFonts({
     Satisfy_400Regular,
