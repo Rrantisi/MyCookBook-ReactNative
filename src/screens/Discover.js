@@ -1,5 +1,6 @@
-import { StyleSheet, View, ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, ActivityIndicator, ScrollView, TouchableOpacity, Image } from 'react-native'
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Categories from '../components/Categories';
 import Meals from '../components/Meals';
 
