@@ -15,10 +15,10 @@ export default function WelcomeScreen() {
   const [isImageLoaded, setImageLoaded] = useState(false);
 
     useEffect(() => {
-      // Placeholder to navigate to main page once logo has loaded
-      // setTimeout(() => {
-      //   navigation.navigate('Main')
-      // }, 6000)
+      // Navigate to main page once logo has loaded
+      setTimeout(() => {
+        navigation.navigate('Main')
+      }, 6000)
     }, [])
 
   const [fontsLoaded, fontError] = useFonts({
