@@ -39,7 +39,7 @@ export default function MainScreen({ activeTab }) {
   )}
 
   {isImageLoaded && (
-    <View style={styles.textContainer}>
+    <View style={styles.componentContainer}>
        <WelcomeBar />
         {components[activeTab]}
     </View>
@@ -60,12 +60,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  textContainer: {
+  componentContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.45)'
-  },
-  text: {
-    color: 'white',
-    fontSize: 25,
+    backgroundColor: '#00000073'
   }
 });
