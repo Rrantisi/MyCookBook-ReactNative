@@ -4,7 +4,8 @@ import axios from 'axios';
 import Categories from '../components/Categories';
 import Meals from '../components/Meals';
 import { LinearGradient } from 'expo-linear-gradient';
-import { AntDesign } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
+import SwipeGesture from 'react-native-swipe-gestures';
 
 export default function Discover() {
   const [data, setData] = useState('');
@@ -15,6 +16,11 @@ export default function Discover() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleSwipeUp = () => {
+    // Swipe-up gesture detected
+    setRandomClicked(false)
+  };
 
   // Render activity indicator if data hasn't loaded yet.
   {!data.strMealThumb && (
@@ -34,35 +40,48 @@ export default function Discover() {
   };
 
   return (
-    <ScrollView nestedScrollEnabled={true}>
+    <View nestedScrollEnabled={true}>
+      {/* placeholder for swip gesture implementation */}
+      {/* <SwipeGesture
+        onSwipeUp={handleSwipeUp}
+        config={{
+          velocityThreshold: 0.3,
+          directionalOffsetThreshold: 80,
+        }}
+      > */}
       <Pressable onPress={() => setRandomClicked(!randomClicked)}>
-        <LinearGradient colors={['#212121', '#21212180', '#f0f0f0', '#ffffff']}>
           {
           randomClicked ? (
-            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-              <AntDesign name="caretup" size={24} color="#A30000" />
-              <Text style={styles.text}>Recipe Roulette</Text>
-              <AntDesign name="caretup" size={24} color="#A30000" />
+          <LinearGradient colors={['#212121', '#333333', '#21212190', '#21212110']}>
+            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 20}}>
+              <SimpleLineIcons name="arrow-up" size={22} color="#f0f0f0" />
+              <Text style={[styles.text, {color: '#f0f0f0'}]}>Recipe Roulette</Text>
+              <SimpleLineIcons name="arrow-up" size={22} color="#f0f0f0" />
             </View>
+          </LinearGradient>
             ) : (
-            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-              <AntDesign name="caretdown" size={24} color="#A30000" />
+          <LinearGradient colors={['#21212180', '#f0f0f0', '#ffffff']}>
+            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 20}}>
+              <SimpleLineIcons name="arrow-down" size={22} color="#FFB74D" />
               <Text style={styles.text}>Recipe Roulette</Text>
-              <AntDesign name="caretdown" size={24} color="#A30000" />
+              <SimpleLineIcons name="arrow-down" size={22} color="#FFB74D" />
             </View>
+          </LinearGradient>
             )
           }
-        </LinearGradient>
       </Pressable>
       {randomClicked && data.strMealThumb && (
         // TODO: add navigation to detail page
-        <TouchableOpacity style={{height: 400, marginBottom: 2, flex: 1}}>
-          <Image source={{ uri: data.strMealThumb}} style={{width: '100%', height: '100%', resizeMode: 'cover'}} />
+        <TouchableOpacity style={{height: 350, marginBottom: 2, flexGrow: 1, backgroundColor: '#ffffff', padding: 2}}>
+          <Image source={{ uri: data.strMealThumb}} style={{width: '100%', height: '100%', resizeMode: 'cover', borderRadius: 8}} />
         </TouchableOpacity>
       ) }
-      <Categories categories={categories} setCategories={setCategories} setMeals={setMeals} />
+      <View style={{flexGrow: 1}}>
+        <Categories categories={categories} setCategories={setCategories} setMeals={setMeals} />
+      </View>
       <Meals meals={meals} />
-    </ScrollView>
+      {/* </SwipeGesture> */}
+    </View>
   )
 }
 
@@ -72,12 +91,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: '#8B0000',
+    color: '#333333',
     textAlign: 'center',
-    fontSize: 20,
-    padding: 10,
-    fontWeight: '700',
-    letterSpacing: 1.2,
+    fontSize: 26,
+    padding: 6,
+    letterSpacing: 2.8,
+    fontFamily: 'Satisfy_400Regular',
+    opacity: 0.9
   }
 })
 
