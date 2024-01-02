@@ -10,6 +10,9 @@ export default function ProfileScreen() {
   const [createdAt, setCreatedAt] = useState('');
   const [userName, setUserName] = useState('');
   const [totalCreations, setTotalCreations] = useState(0);
+  const [totalSaved, setTotalSaved] = useState(0);
+  const [totalFavorites, setTotalFavorites] = useState(0);
+  const [totalListItems, setTotalListItems] = useState(0);
   const [loading, setLoading] = useState(true);
 
   // Fetch User Data from DB
@@ -25,6 +28,9 @@ export default function ProfileScreen() {
             const date = doc.data().createdAt.toDate();
             const formattedDate = `${date.getMonth() + 1}.${date.getDate()}.${date.getFullYear()}`
             setCreatedAt(formattedDate)
+            setTotalSaved(doc.data().saved.length)
+            setTotalFavorites(doc.data().favorites.length)
+            setTotalListItems(doc.data().shoppingList.length)
           }  
         }
       })
@@ -65,7 +71,7 @@ export default function ProfileScreen() {
   }
 
   return (
-    <View style={{flex: 1, backgroundColor: '#F9F9F9'}}>
+    <View style={{flexGrow: 1, backgroundColor: '#F9F9F9'}}>
       {/* Loading Activity Indicator */}
       { loading && (
         <View>
@@ -82,8 +88,10 @@ export default function ProfileScreen() {
           <MaterialCommunityIcons name="home-heart" size={50} color="#B71C1C" />            
           <Text style={[styles.text, {paddingBottom: 0}]}>Hi, {userName}</Text>
           <Pressable onPress={handleLogout}><Text style={{color: '#21212180'}}>Not {userName}? Logout</Text></Pressable>
-          <Text style={styles.textMedium}>Your Status</Text>
-          <View style={[styles.achievementContainer, {backgroundColor: '#FF5722', opacity: 1}]}><Text style={styles.achievementText}>1</Text></View>
+
+          {/* Placeholder for user */}
+          {/* <Text style={styles.textMedium}>Your Status</Text>
+          <View style={[styles.achievementContainer, {backgroundColor: '#FF5722', opacity: 1}]}><Text style={styles.achievementText}>1</Text></View> */}
         </View>
 
         {/* Member since date and user email address */}
@@ -99,8 +107,26 @@ export default function ProfileScreen() {
           <Text style={styles.textSmall}>{totalCreations} {totalCreations == 1 ? 'Recipe' : 'Recipes'}</Text>
         </View>
 
-        {/* -Placeholders- TODO: Add Achievements  */}
+        {/* Total Saved Recipes by user */}
         <View style={styles.container}>
+          <Text style={styles.text}>Total Saved</Text>
+          <Text style={styles.textSmall}>{totalSaved} {totalSaved == 1 ? 'Recipe' : 'Recipes'}</Text>
+        </View>
+
+        {/* Total Favorite Recipes by user */}
+        <View style={styles.container}>
+          <Text style={styles.text}>Total Favorites</Text>
+          <Text style={styles.textSmall}>{totalFavorites} {totalFavorites == 1 ? 'Recipe' : 'Recipes'}</Text>
+        </View>
+
+        {/* Total Items in Shopping List by user */}
+        <View style={styles.container}>
+          <Text style={styles.text}>Total Shopping List Items</Text>
+          <Text style={styles.textSmall}>{totalListItems} {totalListItems == 1 ? 'Item' : 'Items'}</Text>
+        </View>
+
+        {/* -Placeholders- TODO: Add Achievements  */}
+        {/* <View style={styles.container}>
           <Text style={styles.text}>Achievements</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{paddingHorizontal: 20, paddingVertical: 10}}>
             <View style={[styles.achievementContainer, {backgroundColor: '#FF5722', opacity: 1}]}><Text style={styles.achievementText}>1</Text></View>
@@ -110,7 +136,7 @@ export default function ProfileScreen() {
             <View style={[styles.achievementContainer, {backgroundColor: '#CED1D3'}]}><Text style={styles.achievementText}>5</Text></View>
             <View style={[styles.achievementContainer, {backgroundColor: '#CCCCCC'}]}><Text style={styles.achievementText}>6</Text></View>
           </ScrollView>
-        </View>
+        </View> */}
         </>
         ) : (
           <AuthComponent />
