@@ -5,7 +5,7 @@ import Categories from '../components/Categories';
 import Meals from '../components/Meals';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SimpleLineIcons } from '@expo/vector-icons';
-import SwipeGesture from 'react-native-swipe-gestures';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Discover() {
   const [data, setData] = useState('');
@@ -13,14 +13,11 @@ export default function Discover() {
   const [meals, setMeals] = useState([]);
   const [randomClicked, setRandomClicked] = useState(false);
 
+  const navigation = useNavigation();
+
   useEffect(() => {
     fetchData();
   }, []);
-
-  const handleSwipeUp = () => {
-    // Swipe-up gesture detected
-    setRandomClicked(false)
-  };
 
   // Render activity indicator if data hasn't loaded yet.
   {!data.strMealThumb && (
@@ -40,26 +37,16 @@ export default function Discover() {
   };
 
   return (
-    <View nestedScrollEnabled={true}>
-      {/* placeholder for swip gesture implementation */}
-      {/* <SwipeGesture
-        onSwipeUp={handleSwipeUp}
-        config={{
-          velocityThreshold: 0.3,
-          directionalOffsetThreshold: 80,
-        }}
-      > */}
+    <View>
       <Pressable onPress={() => setRandomClicked(!randomClicked)}>
           {
           randomClicked ? (
-          <LinearGradient colors={['#212121', '#333333', '#21212190', '#21212110']}>
-            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 20}}>
-              <SimpleLineIcons name="arrow-up" size={22} color="#f0f0f0" />
-              <Text style={[styles.text, {color: '#f0f0f0'}]}>Recipe Roulette</Text>
-              <SimpleLineIcons name="arrow-up" size={22} color="#f0f0f0" />
-            </View>
-          </LinearGradient>
-            ) : (
+          <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 20, backgroundColor: '#212121'}}>
+            <SimpleLineIcons name="arrow-up" size={22} color="#F0F0F0" />
+            <Text style={[styles.text, {color: '#F0F0F0'}]}>Recipe Roulette</Text>
+            <SimpleLineIcons name="arrow-up" size={22} color="#F0F0F0" />
+          </View>
+          ) : (
           <LinearGradient colors={['#21212180', '#f0f0f0', '#ffffff']}>
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 20}}>
               <SimpleLineIcons name="arrow-down" size={22} color="#FFB74D" />
@@ -71,16 +58,14 @@ export default function Discover() {
           }
       </Pressable>
       {randomClicked && data.strMealThumb && (
-        // TODO: add navigation to detail page
-        <TouchableOpacity style={{height: 350, marginBottom: 2, flexGrow: 1, backgroundColor: '#ffffff', padding: 2}}>
-          <Image source={{ uri: data.strMealThumb}} style={{width: '100%', height: '100%', resizeMode: 'cover', borderRadius: 8}} />
+        <TouchableOpacity style={{height: 350, marginBottom: 2, flexGrow: 1, backgroundColor: '#ffffff'}} onPress={() => navigation.navigate('Detail', {recipeId: data.idMeal})}>
+          <Image source={{ uri: data.strMealThumb}} style={{width: '100%', height: '100%', resizeMode: 'cover'}} />
         </TouchableOpacity>
       ) }
       <View style={{flexGrow: 1}}>
         <Categories categories={categories} setCategories={setCategories} setMeals={setMeals} />
       </View>
       <Meals meals={meals} />
-      {/* </SwipeGesture> */}
     </View>
   )
 }
@@ -93,11 +78,11 @@ const styles = StyleSheet.create({
   text: {
     color: '#333333',
     textAlign: 'center',
-    fontSize: 26,
+    fontSize: 22,
     padding: 6,
     letterSpacing: 2.8,
     fontFamily: 'Satisfy_400Regular',
-    opacity: 0.9
+    opacity: 0.9,
   }
 })
 
