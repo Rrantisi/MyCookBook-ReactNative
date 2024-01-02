@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
   mealImageContainer: {
     height: 120, 
     width: '100%',
-    position: 'relative'
+    position: 'relative',
+    marginVertical: 0.5
   },
   mealImage: {
     width: '100%',
