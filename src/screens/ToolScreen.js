@@ -41,7 +41,7 @@ export default function ToolScreen() {
     resizeMode="cover" 
     onLoad={handleImageLoad} >
   {!isImageLoaded && (
-    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.85)' }}>
+    <SafeAreaView style={{ height: '100%', justifyContent: 'center', alignItems: 'center', backgroundColor: '#212121' }}>
       <ActivityIndicator size="large" />
     </SafeAreaView>
   )}
