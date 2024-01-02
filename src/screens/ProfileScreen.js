@@ -83,7 +83,7 @@ export default function ProfileScreen() {
           <Text style={[styles.text, {paddingBottom: 0}]}>Hi, {userName}</Text>
           <Pressable onPress={handleLogout}><Text style={{color: '#21212180'}}>Not {userName}? Logout</Text></Pressable>
           <Text style={styles.textMedium}>Your Status</Text>
-          <View style={{backgroundColor: '#FF5722', borderRadius: 999, width: 70, height: 70, justifyContent: 'center', alignItems: 'center'}}><Text style={{color: 'white', fontSize: 20}}>1</Text></View>
+          <View style={[styles.achievementContainer, {backgroundColor: '#FF5722', opacity: 1}]}><Text style={styles.achievementText}>1</Text></View>
         </View>
 
         {/* Member since date and user email address */}
@@ -103,12 +103,12 @@ export default function ProfileScreen() {
         <View style={styles.container}>
           <Text style={styles.text}>Achievements</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{paddingHorizontal: 20, paddingVertical: 10}}>
-            <View style={[styles.achievementContainer, {backgroundColor: '#FF5722', opacity: 1}]}><Text style={{color: 'white', fontSize: 20}}>1</Text></View>
-            <View style={[styles.achievementContainer, {backgroundColor: '#E53935'}]}><Text style={{color: 'white', fontSize: 20}}>2</Text></View>
-            <View style={[styles.achievementContainer, {backgroundColor: '#1E88E5'}]}><Text style={{color: 'white', fontSize: 20}}>3</Text></View>
-            <View style={[styles.achievementContainer, {backgroundColor: '#388E3C'}]}><Text style={{color: 'white', fontSize: 20}}>4</Text></View>
-            <View style={[styles.achievementContainer, {backgroundColor: '#CED1D3'}]}><Text style={{color: 'white', fontSize: 20}}>5</Text></View>
-            <View style={[styles.achievementContainer, {backgroundColor: '#CCCCCC'}]}><Text style={{color: 'white', fontSize: 20}}>6</Text></View>
+            <View style={[styles.achievementContainer, {backgroundColor: '#FF5722', opacity: 1}]}><Text style={styles.achievementText}>1</Text></View>
+            <View style={[styles.achievementContainer, {backgroundColor: '#E53935'}]}><Text style={styles.achievementText}>2</Text></View>
+            <View style={[styles.achievementContainer, {backgroundColor: '#1E88E5'}]}><Text style={styles.achievementText}>3</Text></View>
+            <View style={[styles.achievementContainer, {backgroundColor: '#388E3C'}]}><Text style={styles.achievementText}>4</Text></View>
+            <View style={[styles.achievementContainer, {backgroundColor: '#CED1D3'}]}><Text style={styles.achievementText}>5</Text></View>
+            <View style={[styles.achievementContainer, {backgroundColor: '#CCCCCC'}]}><Text style={styles.achievementText}>6</Text></View>
           </ScrollView>
         </View>
         </>
@@ -137,6 +137,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 4,
     opacity: 0.2
+  },
+  achievementText: {
+    color: '#FFFFFF', 
+    fontSize: 20
   },
   text: {
     color: '#21212180',
