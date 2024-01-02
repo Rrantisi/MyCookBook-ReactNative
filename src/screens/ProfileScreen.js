@@ -63,7 +63,7 @@ export default function ProfileScreen() {
   }
 
   return (
-    <View style={{backgroundColor: '#F9F9F9'}}>
+    <View style={{flex: 1, backgroundColor: '#F9F9F9'}}>
       <ScrollView>
         {user ? (
         <>
