@@ -2,7 +2,7 @@ import { StyleSheet, Text, Pressable, View, ScrollView, ActivityIndicator } from
 import React, { useState, useEffect } from 'react'
 import AuthComponent from '../components/AuthComponent';
 import { auth, db } from '../../firebase';
-import { getDocs, collection, query, where, doc } from 'firebase/firestore';
+import { getDocs, collection, query, where } from 'firebase/firestore';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function ProfileScreen() {
