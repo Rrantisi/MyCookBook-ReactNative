@@ -17,6 +17,7 @@ export default function Timer() {
     return () => {
       clearInterval(timerInterval);
     };
+
   }, [isActive, seconds, minutes, hours]);
 
   const renderTime = () => {
@@ -49,6 +50,7 @@ export default function Timer() {
     setMinutes(0);
     setHours(0);
   }
+  
   return (
     <SafeAreaView style={{alignItems: 'center', justifyContent: 'flex-start', marginTop: 40, height: '100%'}}>
       <Text style={[styles.text]}>Cooking Timer</Text>
