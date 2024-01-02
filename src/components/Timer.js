@@ -55,11 +55,11 @@ export default function Timer() {
     <SafeAreaView style={{alignItems: 'center', justifyContent: 'flex-start', marginTop: 40, height: '100%'}}>
       <Text style={[styles.text]}>Cooking Timer</Text>
         <View style={styles.timerContainer}>
-          <TextInput placeholder='0 Hours' keyboardType='numeric' value={hours} onChangeText={setHours} placeholderTextColor={'#F0F0F0'} style={{fontSize: 28, color: '#F0F0F0'}} />
+          <TextInput placeholder='0 Hours' keyboardType='numeric' value={hours} onChangeText={setHours} placeholderTextColor={'#f0f0f090'} style={{fontSize: 28, color: '#F0F0F0'}} />
           <Text style={styles.text}>:</Text>
-          <TextInput placeholder='0 Min' keyboardType='numeric' value={minutes} onChangeText={setMinutes} placeholderTextColor={'#F0F0F0'} style={{fontSize: 28, color: '#F0F0F0'}} />
+          <TextInput placeholder='0 Min' keyboardType='numeric' value={minutes} onChangeText={setMinutes} placeholderTextColor={'#f0f0f090'} style={{fontSize: 28, color: '#F0F0F0'}} />
           <Text style={styles.text}>:</Text>
-          <TextInput placeholder='0 Sec' keyboardType='numeric' value={seconds} onChangeText={setSeconds} placeholderTextColor={'#F0F0F0'} style={{fontSize: 28, color: '#F0F0F0'}} />
+          <TextInput placeholder='0 Sec' keyboardType='numeric' value={seconds} onChangeText={setSeconds} placeholderTextColor={'#f0f0f090'} style={{fontSize: 28, color: '#F0F0F0'}} />
         </View>  
       <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 20, marginVertical: 20}}>
         <Pressable onPress={() => setIsActive(!isActive)} style={styles.button}><Text style={{color: '#F0F0F0', textAlign: 'center', fontSize: 20, fontWeight: '600'}}>{isActive ? 'Pause' : 'Go'}</Text></Pressable>
