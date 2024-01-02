@@ -66,6 +66,7 @@ export default function ProfileScreen() {
 
   return (
     <View style={{flex: 1, backgroundColor: '#F9F9F9'}}>
+      {/* Loading Activity Indicator */}
       { loading && (
         <View>
           <ActivityIndicator size="large" />
@@ -74,6 +75,8 @@ export default function ProfileScreen() {
       <ScrollView>
         {user ? (
         <>
+
+        {/* Welcome Message, Logout button, user status */}
         <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#F0F0F0', paddingVertical: 8, marginVertical: 1}}>
           <Text style={{ padding: 2, marginBottom: 20, fontSize: 16, color: '#21212180', fontWeight: '500'}}>Profile</Text>
           <MaterialCommunityIcons name="home-heart" size={50} color="#B71C1C" />            
@@ -82,17 +85,22 @@ export default function ProfileScreen() {
           <Text style={styles.textMedium}>Your Status</Text>
           <View style={{backgroundColor: '#FF5722', borderRadius: 999, width: 70, height: 70, justifyContent: 'center', alignItems: 'center'}}><Text style={{color: 'white', fontSize: 20}}>1</Text></View>
         </View>
+
+        {/* Member since date and user email address */}
         <View style={styles.container}>
           <Text style={styles.text}>At a glance</Text>
           <Text style={styles.textSmall}>Member Since: <Text style={{fontStyle: 'italic', fontSize: 16, fontWeight: '700'}}>{createdAt}</Text></Text>
           <Text style={styles.textSmall}>Email: <Text style={{fontStyle: 'italic', fontSize: 16, fontWeight: '700'}}>{auth.currentUser.email}</Text></Text>
         </View>
+
+        {/* Total Recipe Creation by user */}
         <View style={styles.container}>
           <Text style={styles.text}>Total Creations</Text>
           <Text style={styles.textSmall}>{totalCreations} {totalCreations == 1 ? 'Recipe' : 'Recipes'}</Text>
         </View>
+
+        {/* -Placeholders- TODO: Add Achievements  */}
         <View style={styles.container}>
-          {/* -Placeholders- TODO: Add Achievements  */}
           <Text style={styles.text}>Achievements</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{paddingHorizontal: 20, paddingVertical: 10}}>
             <View style={[styles.achievementContainer, {backgroundColor: '#FF5722', opacity: 1}]}><Text style={{color: 'white', fontSize: 20}}>1</Text></View>
