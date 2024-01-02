@@ -7,7 +7,6 @@ import Conversion from '../components/Conversion';
 import ShoppingList from '../components/ShoppingList';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import bgImage from '../../assets/images/bg1.png';
@@ -78,14 +77,14 @@ export default function ToolScreen() {
           {/* Convert */}
           <TouchableOpacity onPress={() => handleToolClick('convert')} style={{ borderColor: '#21212110', borderWidth: 0.5, padding: 2, borderRadius: 9}}>
             <View style={{borderColor: key == 'convert' ? '#ffffff30' : '#ffffff10', borderWidth: 4, padding: 12, borderRadius: 20}}>
-              <FontAwesome5 name="exchange-alt" size={30} color={key == 'convert' ? 'white' : '#ffffff90'} />
+              <Ionicons name="swap-horizontal" size={30} color={key == 'convert' ? 'white' : '#ffffff90'} />
             </View>
           </TouchableOpacity>
 
           {/* Shopping List */}
           <TouchableOpacity onPress={() => handleToolClick('addToList')} style={{ borderColor: '#21212110', borderWidth: 0.5, padding: 2, borderRadius: 9}}>
             <View style={{borderColor: key == 'addToList' ? '#ffffff30' : '#ffffff10', borderWidth: 4, padding: 12, borderRadius: 20}}>
-              <Ionicons name={'md-list-outline'} size={30} color={key == 'addToList' ? 'white' : '#ffffff90'} />
+              <MaterialIcons name="list-alt" size={30} color={key == 'addToList' ? 'white' : '#ffffff90'} />
             </View>
             </TouchableOpacity>
         </View>
