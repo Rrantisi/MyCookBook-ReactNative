@@ -71,7 +71,6 @@ export default function BottomTabs() {
           tabBarLabel: 'Favorites',
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            // <MaterialIcons name={focused ? 'favorite' : 'favorite-outline'} size={28} color={focused ? '#C21E56' : '#212121d8'} />            
             <MaterialIcons name={focused ? 'favorite' : 'favorite-outline'} size={28} color='#777777' />            
             ),
           tabBarStyle: getTabBarStyle('#212121')
