@@ -9,7 +9,8 @@ export default function ProfileScreen() {
   const [user, setUser] = useState(auth.currentUser);
   const [createdAt, setCreatedAt] = useState('');
   const [userName, setUserName] = useState('');
-  const [totalCreations, setTotalCreations] = useState(0)
+  const [totalCreations, setTotalCreations] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   // Fetch User Data from DB
   const fetchData = async () => {
@@ -38,6 +39,7 @@ export default function ProfileScreen() {
     handleFetchCreations();
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
+      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -64,6 +66,11 @@ export default function ProfileScreen() {
 
   return (
     <View style={{flex: 1, backgroundColor: '#F9F9F9'}}>
+      { loading && (
+        <View>
+          <ActivityIndicator size="large" />
+        </View>  
+      )}
       <ScrollView>
         {user ? (
         <>
