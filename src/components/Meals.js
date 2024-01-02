@@ -16,7 +16,7 @@ export default function Meals({meals}) {
           <View style={styles.mealImageContainer}>
             <Image source={{uri: item.strMealThumb}} style={styles.mealImage} />
           </View>
-          <Text style={{position: 'absolute', fontSize: 24, color: 'white', fontWeight: '800', backgroundColor: '#2121214c', padding: 5, width: 300}}>{item.strMeal}</Text>
+          <Text style={{position: 'absolute', fontSize: 24, color: 'white', fontWeight: '800', backgroundColor: '#2121214c', padding: 8, width: '60%'}}>{item.strMeal}</Text>
         </Pressable>
       )}
     />
