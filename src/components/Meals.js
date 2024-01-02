@@ -11,8 +11,7 @@ export default function Meals({meals}) {
       data={meals}
       keyExtractor={(item) => item.idMeal}
       renderItem={({item}) => (
-        // TODO: add onPress navigation to detail page
-        <Pressable key={item.idMeal}>
+        <Pressable key={item.idMeal} onPress={() => navigation.navigate('Detail', {recipeId: item.idMeal})}>
           <View style={styles.mealImageContainer}>
             <Image source={{uri: item.strMealThumb}} style={styles.mealImage} />
           </View>
