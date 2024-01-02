@@ -1,9 +1,10 @@
-import { StyleSheet, Text, Pressable, View, ScrollView, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, Pressable, View, ScrollView, SafeAreaView,ActivityIndicator } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import AuthComponent from '../components/AuthComponent';
 import { auth, db } from '../../firebase';
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ProfileScreen() {
   const [user, setUser] = useState(auth.currentUser);
@@ -14,6 +15,8 @@ export default function ProfileScreen() {
   const [totalFavorites, setTotalFavorites] = useState(0);
   const [totalListItems, setTotalListItems] = useState(0);
   const [loading, setLoading] = useState(true);
+
+  const navigation = useNavigation();
 
   // Fetch User Data from DB
   const fetchData = async () => {
@@ -71,17 +74,16 @@ export default function ProfileScreen() {
   }
 
   return (
-    <View style={{flexGrow: 1, backgroundColor: '#F9F9F9'}}>
+    <ScrollView>
+      <SafeAreaView style={{flexGrow: 1, backgroundColor: '#F9F9F9'}}>
       {/* Loading Activity Indicator */}
       { loading && (
         <View>
           <ActivityIndicator size="large" />
         </View>  
       )}
-      <ScrollView>
         {user ? (
         <>
-
         {/* Welcome Message, Logout button, user status */}
         <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#F0F0F0', paddingVertical: 8, marginVertical: 1}}>
           <Text style={{ padding: 2, marginBottom: 20, fontSize: 16, color: '#21212180', fontWeight: '500'}}>Profile</Text>
@@ -110,19 +112,25 @@ export default function ProfileScreen() {
         {/* Total Saved Recipes by user */}
         <View style={styles.container}>
           <Text style={styles.text}>Total Saved</Text>
-          <Text style={styles.textSmall}>{totalSaved} {totalSaved == 1 ? 'Recipe' : 'Recipes'}</Text>
+          <Pressable onPress={() => {navigation.navigate('Saved')}}>
+            <Text style={styles.textSmall}>{totalSaved} {totalSaved == 1 ? 'Recipe' : 'Recipes'}</Text>
+          </Pressable>
         </View>
 
         {/* Total Favorite Recipes by user */}
         <View style={styles.container}>
           <Text style={styles.text}>Total Favorites</Text>
-          <Text style={styles.textSmall}>{totalFavorites} {totalFavorites == 1 ? 'Recipe' : 'Recipes'}</Text>
+          <Pressable onPress={() => navigation.navigate('Favorites')}>
+            <Text style={styles.textSmall}>{totalFavorites} {totalFavorites == 1 ? 'Recipe' : 'Recipes'}</Text>
+          </Pressable>
         </View>
 
         {/* Total Items in Shopping List by user */}
         <View style={styles.container}>
           <Text style={styles.text}>Total Shopping List Items</Text>
-          <Text style={styles.textSmall}>{totalListItems} {totalListItems == 1 ? 'Item' : 'Items'}</Text>
+          <Pressable onPress={() => {navigation.navigate('ShoppingList')}}>
+            <Text style={styles.textSmall}>{totalListItems} {totalListItems == 1 ? 'Item' : 'Items'}</Text>
+          </Pressable>
         </View>
 
         {/* -Placeholders- TODO: Add Achievements  */}
@@ -142,8 +150,8 @@ export default function ProfileScreen() {
           <AuthComponent />
         )
       }
-      </ScrollView>
-    </View>
+      </SafeAreaView>
+    </ScrollView>
   )
 }
 
