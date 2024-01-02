@@ -97,39 +97,39 @@ export default function ProfileScreen() {
         </View>
 
         {/* Member since date and user email address */}
-        <View style={styles.container}>
+        <View style={styles.containerV}>
           <Text style={styles.text}>At a glance</Text>
           <Text style={styles.textSmall}>Member Since: <Text style={{fontStyle: 'italic', fontSize: 16, fontWeight: '700'}}>{createdAt}</Text></Text>
           <Text style={styles.textSmall}>Email: <Text style={{fontStyle: 'italic', fontSize: 16, fontWeight: '700'}}>{auth.currentUser.email}</Text></Text>
         </View>
 
         {/* Total Recipe Creation by user */}
-        <View style={styles.container}>
+        <View style={styles.containerV}>
           <Text style={styles.text}>Total Creations</Text>
           <Text style={styles.textSmall}>{totalCreations} {totalCreations == 1 ? 'Recipe' : 'Recipes'}</Text>
         </View>
 
         {/* Total Saved Recipes by user */}
-        <View style={styles.container}>
-          <Text style={styles.text}>Total Saved</Text>
+        <View style={styles.containerH}>
+          <Text style={styles.text}>Saved Recipes:</Text>
           <Pressable onPress={() => {navigation.navigate('Saved')}}>
-            <Text style={styles.textSmall}>{totalSaved} {totalSaved == 1 ? 'Recipe' : 'Recipes'}</Text>
+            <Text style={[styles.textSmall, {textDecorationLine: 'underline'}]}>{totalSaved}</Text>
           </Pressable>
         </View>
 
         {/* Total Favorite Recipes by user */}
-        <View style={styles.container}>
-          <Text style={styles.text}>Total Favorites</Text>
+        <View style={styles.containerH}>
+          <Text style={styles.text}>Favorites:</Text>
           <Pressable onPress={() => navigation.navigate('Favorites')}>
-            <Text style={styles.textSmall}>{totalFavorites} {totalFavorites == 1 ? 'Recipe' : 'Recipes'}</Text>
+            <Text style={[styles.textSmall, {textDecorationLine: 'underline'}]}>{totalFavorites}</Text>
           </Pressable>
         </View>
 
         {/* Total Items in Shopping List by user */}
-        <View style={styles.container}>
-          <Text style={styles.text}>Total Shopping List Items</Text>
+        <View style={styles.containerH}>
+          <Text style={styles.text}>Shopping List Items:</Text>
           <Pressable onPress={() => {navigation.navigate('ShoppingList')}}>
-            <Text style={styles.textSmall}>{totalListItems} {totalListItems == 1 ? 'Item' : 'Items'}</Text>
+            <Text style={[styles.textSmall, {textDecorationLine: 'underline'}]}>{totalListItems}</Text>
           </Pressable>
         </View>
 
@@ -156,12 +156,20 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerV: {
     backgroundColor: '#F0F0F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 1,
-    paddingVertical: 10
+    paddingVertical: 14
+  },
+  containerH: {
+    backgroundColor: '#F0F0F0',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 1,
+    paddingVertical: 14
   },
   achievementContainer: {
     borderRadius: 999,
@@ -179,7 +187,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#21212180',
     fontSize: 22,
-    padding: 14,
+    padding: 16,
     fontWeight: '700'
   },
   textMedium: {
