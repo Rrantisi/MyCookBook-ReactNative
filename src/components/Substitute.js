@@ -39,10 +39,9 @@ export default function Substitute() {
   return (
     <View style={{ marginTop: 40 }}>
       <Text style={styles.text}>Find Substitutes</Text>
-      <View style={{ justifyContent: 'space-between' }}>
-        <View style={{padding: 14, borderColor: '#ffffff10', borderWidth: 3, marginHorizontal: 20, marginVertical: 20, marginTop: 14, borderRadius: 10, paddingVertical: 8}}>
-          <TextInput placeholder='Ingredient Name' onChangeText={setQuery} value={query} placeholderTextColor='#f0f0f090' style={{fontSize: 22,  width: '100%', paddingVertical: 14, marginVertical: 4,  color: '#f0f0f0'}}/>
-        </View>
+      <View style={{justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 5, marginVertical: 20}}>
+        {/* Ingredient Name */}
+        <TextInput placeholder='Ingredient Name' onChangeText={setQuery} value={query} placeholderTextColor='#f0f0f090' style={styles.inputContainer}/>
 
         {/* if go button clicked replace it with clear button */}
         <View style={{marginLeft: 'auto', marginRight: 'auto'}}>
@@ -104,5 +103,15 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'justify'
   },
-
+  inputContainer: {
+    fontSize: 22,
+    borderColor: '#ffffff10',
+    borderWidth: 3,
+    paddingHorizontal:14,
+    borderRadius: 10,
+    marginVertical: 8,
+    width: '90%',
+    paddingVertical: 24,
+    color: '#f0f0f0'
+  }
 })
