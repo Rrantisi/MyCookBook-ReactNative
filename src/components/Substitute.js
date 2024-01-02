@@ -37,7 +37,7 @@ export default function Substitute() {
   }
 
   return (
-    <View style={{ marginTop: 20 }}>
+    <View style={{ marginTop: 40 }}>
       <Text style={styles.text}>Find Substitutes</Text>
       <View style={{ justifyContent: 'space-between' }}>
         <View style={{padding: 14, borderColor: '#ffffff10', borderWidth: 3, marginHorizontal: 20, marginVertical: 20, marginTop: 14, borderRadius: 10, paddingVertical: 8}}>
@@ -83,9 +83,9 @@ export default function Substitute() {
 const styles = StyleSheet.create({
   text: {
     color: '#ffffff',
-    letterSpacing: 1.2,
+    letterSpacing: 1.6,
     fontSize: 24,
-    padding: 26,
+    padding: 14,
     fontWeight: '600',
     textAlign: 'center'
   },

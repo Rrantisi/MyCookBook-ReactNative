@@ -52,7 +52,7 @@ export default function Timer() {
   }
   
   return (
-    <SafeAreaView style={{alignItems: 'center', justifyContent: 'flex-start', marginTop: 40, height: '100%'}}>
+    <View style={{alignItems: 'center', marginTop: 40}}>
       <Text style={[styles.text]}>Cooking Timer</Text>
         <View style={styles.timerContainer}>
           <TextInput placeholder='0 Hours' keyboardType='numeric' value={hours} onChangeText={setHours} placeholderTextColor={'#f0f0f090'} style={{fontSize: 28, color: '#F0F0F0'}} />
@@ -65,14 +65,14 @@ export default function Timer() {
         <Pressable onPress={() => setIsActive(!isActive)} style={styles.button}><Text style={{color: '#F0F0F0', textAlign: 'center', fontSize: 20, fontWeight: '600'}}>{isActive ? 'Pause' : 'Go'}</Text></Pressable>
         <Pressable onPress={handleReset} style={styles.button}><Text style={{color: '#F0F0F0', textAlign: 'center', fontSize: 20, fontWeight: '600'}}>Reset</Text></Pressable>
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   text: {
     color: '#ffffff',
-    letterSpacing: 1.2,
+    letterSpacing: 1.6,
     fontSize: 24,
     padding: 14,
     fontWeight: '600',
