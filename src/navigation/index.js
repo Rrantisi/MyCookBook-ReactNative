@@ -5,6 +5,7 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import BottomTabs from './BottomTabs';
 import SearchScreen from '../screens/SearchScreen';
 import ToolScreen from '../screens/ToolScreen';
+import RecipeDetails from '../screens/RecipeDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ export default function AppNavigation() {
         <Stack.Screen name="Main" component={BottomTabs} />
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="ToolScreen" component={ToolScreen} />
+        <Stack.Screen name="Detail" component={RecipeDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   )
