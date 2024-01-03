@@ -128,9 +128,7 @@ export default function ProfileScreen() {
         {/* Total Items in Shopping List by user */}
         <View style={styles.containerH}>
           <Text style={styles.text}>Shopping List Items:</Text>
-          <Pressable onPress={() => {navigation.navigate('ShoppingList')}}>
-            <Text style={[styles.textSmall, {textDecorationLine: 'underline'}]}>{totalListItems}</Text>
-          </Pressable>
+          <Text style={[styles.textSmall, {textDecorationLine: 'underline'}]}>{totalListItems}</Text>
         </View>
 
         {/* -Placeholders- TODO: Add Achievements  */}
