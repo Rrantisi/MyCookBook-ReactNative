@@ -1,7 +1,7 @@
 import { ActivityIndicator, StyleSheet, Text,  View } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import { auth, db } from '../../firebase';
-import { doc, getDoc, updateDoc, arrayRemove, onSnapshot } from 'firebase/firestore';
+import { doc, updateDoc, arrayRemove, onSnapshot } from 'firebase/firestore';
 import { Fontisto } from '@expo/vector-icons';
 
 export default function ShoppingList() {
@@ -16,7 +16,6 @@ export default function ShoppingList() {
         onSnapshot(doc(db, "users", `${auth.currentUser.uid}`), (doc) => {
           setItems(doc.data().shoppingList)
         });
-        
           setLoading(false);
         } catch(e){
           console.log(e)
