@@ -1,13 +1,13 @@
 import { StyleSheet, Text, Pressable, View, ScrollView, SafeAreaView,ActivityIndicator } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import AuthComponent from '../components/AuthComponent';
 import { auth, db } from '../../firebase';
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { withAuthentication } from '../components/withAuthentication';
 
-export default function ProfileScreen() {
-  const [user, setUser] = useState(auth.currentUser);
+// TODO: add auth check 
+const ProfileScreen = () => {
   const [createdAt, setCreatedAt] = useState('');
   const [userName, setUserName] = useState('');
   const [totalCreations, setTotalCreations] = useState(0);
@@ -17,6 +17,7 @@ export default function ProfileScreen() {
   const [loading, setLoading] = useState(true);
 
   const navigation = useNavigation();
+  const user = auth.currentUser || null;
 
   // Fetch User Data from DB
   const fetchData = async () => {
@@ -25,21 +26,20 @@ export default function ProfileScreen() {
       const docSnap = await getDocs(users);
 
       docSnap.forEach((doc)=> {
-        if(user){
-          if (doc.id === user.uid){
-            setUserName(doc.data().displayName)
-            const date = doc.data().createdAt.toDate();
-            const formattedDate = `${date.getMonth() + 1}.${date.getDate()}.${date.getFullYear()}`
-            setCreatedAt(formattedDate)
-            setTotalSaved(doc.data().saved.length)
-            setTotalFavorites(doc.data().favorites.length)
-            setTotalListItems(doc.data().shoppingList.length)
-            setLoading(false);
-          }  
+        if (doc.id === user.uid){
+          setUserName(doc.data().displayName)
+          const date = doc.data().createdAt.toDate();
+          const formattedDate = `${date.getMonth() + 1}.${date.getDate()}.${date.getFullYear()}`
+          setCreatedAt(formattedDate)
+          setTotalSaved(doc.data().saved.length)
+          setTotalFavorites(doc.data().favorites.length)
+          setTotalListItems(doc.data().shoppingList.length)
+          setLoading(false);
         }
       })
     } catch (error) {
       console.error("Error getting documents: ", error);
+      setLoading(false);
     }
   };
   
@@ -47,10 +47,6 @@ export default function ProfileScreen() {
 
   useEffect(() => {
     handleFetchCreations();
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
-    });
-    return () => unsubscribe();
   }, []);
 
   const handleLogout = async () => {
@@ -65,11 +61,16 @@ export default function ProfileScreen() {
 
   // Fetch Total Number of Recipes created by user
   const handleFetchCreations = async() => {
-    const q = query(collection(db, "recipes"), where ("userId", "==", auth.currentUser.uid));
+    try {
+      const q = query(collection(db, "recipes"), where ("userId", "==", auth.currentUser.uid));
 
-    // get the documents that match the query
-    const querySnapshot = await getDocs(q);
-    setTotalCreations(querySnapshot.size)
+      // get the documents that match the query
+      const querySnapshot = await getDocs(q);
+      setTotalCreations(querySnapshot.size)
+  
+    } catch(e){
+      console.error('Something Went Wrong', e);
+    }
   }
 
   return (
@@ -81,7 +82,6 @@ export default function ProfileScreen() {
         </View>  
       ) : (
       <SafeAreaView style={{flexGrow: 1, backgroundColor: '#F9F9F9'}}>
-        {user ? (
         <>
         {/* Welcome Message, Logout button, user status */}
         <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#F0F0F0', paddingVertical: 8, marginVertical: 1}}>
@@ -142,11 +142,7 @@ export default function ProfileScreen() {
             <View style={[styles.achievementContainer, {backgroundColor: '#CCCCCC'}]}><Text style={styles.achievementText}>6</Text></View>
           </ScrollView>
         </View> */}
-        </>
-        ) : (
-          <AuthComponent />
-        )
-      }
+        </>      
       </SafeAreaView>
     )}
     </ScrollView>
@@ -201,3 +197,5 @@ const styles = StyleSheet.create({
     fontWeight: '500'
   }
 })
+
+export default withAuthentication(ProfileScreen);

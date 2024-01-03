@@ -1,22 +1,19 @@
 import { StyleSheet, Pressable, Text, View, ScrollView } from 'react-native';
 import React, { useState } from 'react';
-import { auth } from '../../firebase';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import AddRecipe from '../components/AddRecipe';
 import AllRecipes from '../components/AllRecipes';
-import AuthComponent from '../components/AuthComponent';
+import { withAuthentication } from '../components/withAuthentication';
 
-export default function MyKitchen() {
+const MyKitchen = () => {
   const navigation = useNavigation();
 
-  const [user, setUser] = useState(auth.currentUser);
   const [buttonPressed, setButtonPressed] = useState(false)
 
   return (
     <View style={{flex: 1}}>
-      {user ? (
         <>
         { buttonPressed ? (
           <>
@@ -38,10 +35,6 @@ export default function MyKitchen() {
           </>
         )}
         </>
-        ) : (
-        <AuthComponent user={user} setUser={setUser}/>
-        )
-      }
     </View>
   )
 }
@@ -63,3 +56,4 @@ const styles = StyleSheet.create({
   }
 })
 
+export default withAuthentication(MyKitchen);

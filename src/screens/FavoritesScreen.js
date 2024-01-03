@@ -4,8 +4,9 @@ import { auth, db } from '../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import { withAuthentication } from '../components/withAuthentication';
 
-export default function Favorites() {
+const Favorites = () => {
   const [recipeInfo, setRecipeInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigation = useNavigation();
@@ -125,3 +126,4 @@ const styles = StyleSheet.create({
   }
 })
 
+export default withAuthentication(Favorites);

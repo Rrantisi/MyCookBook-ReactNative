@@ -4,8 +4,9 @@ import { auth, db } from '../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import { withAuthentication } from '../components/withAuthentication';
 
-export default function SavedScreen() {
+const SavedScreen = () => {
   const [recipeInfo, setRecipeInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigation = useNavigation();
@@ -60,7 +61,6 @@ export default function SavedScreen() {
             <ActivityIndicator size="large"/>
           </View>  
         )}
-        
         {recipeInfo.map((recipe, index) => (
           <Pressable key={index} onPress={() => navigation.navigate('Detail', {recipeId: recipe.id || recipe.idMeal})} style={styles.recipeContainer}>
 
@@ -125,3 +125,4 @@ const styles = StyleSheet.create({
   }
 })
 
+export default withAuthentication(SavedScreen);

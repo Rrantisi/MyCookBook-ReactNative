@@ -3,8 +3,9 @@ import React, {useState, useEffect} from 'react';
 import { auth, db } from '../../firebase';
 import { doc, updateDoc, arrayRemove, onSnapshot } from 'firebase/firestore';
 import { Fontisto } from '@expo/vector-icons';
+import { withAuthentication } from './withAuthentication';
 
-export default function ShoppingList() {
+const ShoppingList= () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -78,3 +79,5 @@ const styles = StyleSheet.create({
     marginVertical: 2
   }
 })
+
+export default withAuthentication(ShoppingList);

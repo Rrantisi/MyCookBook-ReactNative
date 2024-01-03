@@ -1,12 +1,11 @@
 import { auth, db } from '../../firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Text, Button, ActivityIndicator, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 
-export default function AuthComponent({ user, setUser }) {
-  // const [user, setUser] = useState(auth.currentUser);
+export default function AuthComponent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
@@ -14,15 +13,6 @@ export default function AuthComponent({ user, setUser }) {
   const [signedUp, setSignedUp] = useState(true);
 
   const navigation = useNavigation();
-
-  // Authentication state listener to keep track of current authenticated user
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
-    });
-
-    return () => unsubscribe();
-  }, []);
 
   // Sign In Function
   const signIn = async() => {

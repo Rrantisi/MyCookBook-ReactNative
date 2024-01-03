@@ -185,15 +185,18 @@ export default function RecipeDetails(props) {
       /* Recipe Details */
          <ScrollView>
           {/* Save and Add to Favorites icons */}
-          <View style={{flexDirection: 'row', zIndex: 1000}}>
-            <TouchableOpacity style={{position: 'absolute', marginTop: 10, left: '2%'}} onPress={handleSave}>
-              <MaterialIcons name='bookmark' size={34} color={savedClicked ? 'black' : '#f0f0f0'} style={styles.recipeIcon}/>
-            </TouchableOpacity>
-            <TouchableOpacity style={{position: 'absolute', marginTop: 10 , right: '2%'}}>
-              <MaterialIcons name='favorite' size={34} color={favoriteClicked ? '#FF0000' : '#f0f0f0'} onPress={handleAddFavorite} style={styles.recipeIcon}/>            
-            </TouchableOpacity>
-          </View>
-
+          { auth.currentUser && auth.currentUser.uid ? (
+            <View style={{flexDirection: 'row', zIndex: 1000}}>
+              <TouchableOpacity style={{position: 'absolute', marginTop: 10, left: '2%'}} onPress={handleSave}>
+                <MaterialIcons name='bookmark' size={34} color={savedClicked ? 'black' : '#f0f0f0'} style={styles.recipeIcon}/>
+              </TouchableOpacity>
+              <TouchableOpacity style={{position: 'absolute', marginTop: 10 , right: '2%'}}>
+                <MaterialIcons name='favorite' size={34} color={favoriteClicked ? '#FF0000' : '#f0f0f0'} onPress={handleAddFavorite} style={styles.recipeIcon}/>            
+              </TouchableOpacity>
+            </View>  
+          ) : (
+            ''
+          )}
           {/* Recipe Image */}
           <View style={{width: '100%', height: 480}}>
           {recipeDetails.photo && (
@@ -215,8 +218,8 @@ export default function RecipeDetails(props) {
 
           {/* Recipe Instructions */}
           <Text style={[styles.textMedium, {marginTop: 15, marginHorizontal: 14}]}>Instructions</Text>
-          {isUserData && recipeDetails.instructions && recipeDetails.instructions.map((instruction) => (
-            <Text style={[styles.textSmall, {marginHorizontal: 18}]}>{instruction}</Text> 
+          {isUserData && recipeDetails.instructions && recipeDetails.instructions.map((instruction, index) => (
+            <Text key={index} style={[styles.textSmall, {marginHorizontal: 18}]}>{instruction}</Text> 
           ))}
           {!isUserData && recipeDetails.instructions && (
             <Text style={[styles.textSmall, {marginHorizontal: 18}]}>{recipeDetails.instructions}</Text> 
