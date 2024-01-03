@@ -127,16 +127,27 @@ export default function RecipeDetails(props) {
           })    
         }
 
+        // Fetch Saved/Favorites/ShoppingListItems
         const userDocRef = doc(db, "users", `${auth.currentUser.uid}`);
         const userDocSnap = await getDoc(userDocRef); // Fetch user document snapshot
         const savedRecipes = userDocSnap.data().saved || [];
         const favoriteRecipes = userDocSnap.data().favorites || []; 
+        const items = userDocSnap.data().shoppingList || [];
 
         // checks if the user has the recipe saved and/or in favorites
         const isRecipeSaved = savedRecipes.includes(recipeId);
         const isFavorite = favoriteRecipes.includes(recipeId);
         setSavedClicked(isRecipeSaved);
         setFavoriteClicked(isFavorite);
+        // setItems(items)
+
+        items.map((item) => {
+          setCheckedIngredients(prevState => ({
+            ...prevState,
+            [item]: true
+          }));
+  
+        })
       } catch(e){
         console.log('An Error has occurred', e)
       }
