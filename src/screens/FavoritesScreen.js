@@ -5,7 +5,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 
-export default function FavoritesScreen() {
+export default function Favorites() {
   const [recipeInfo, setRecipeInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigation = useNavigation();
@@ -31,8 +31,8 @@ export default function FavoritesScreen() {
   }
 
   useEffect(() => {
-    // Fetch Favorite Recipes Ids from db
-    const fetchFavorites = async() => {
+    // Fetch Favorites Recipes Ids from db
+    const fetchFavoritesRecipes = async() => {
       try {
           const userDocRef = doc(db, "users", auth.currentUser.uid);
           const userDocSnap = await getDoc(userDocRef);
@@ -49,17 +49,18 @@ export default function FavoritesScreen() {
           console.log(e)
         }
       }
-    fetchFavorites();;
+      fetchFavoritesRecipes();
   }, [])
 
   return (
     <ScrollView>
       <Text style={styles.text}>Favorites</Text>
-      { isLoading && (
-        <View>
-          <ActivityIndicator size="large"/>
-        </View>  
-      )}
+        { isLoading && (
+          <View>
+            <ActivityIndicator size="large"/>
+          </View>  
+        )}
+        
         {recipeInfo.map((recipe, index) => (
           <Pressable key={index} onPress={() => navigation.navigate('Detail', {recipeId: recipe.id || recipe.idMeal})} style={styles.recipeContainer}>
 
