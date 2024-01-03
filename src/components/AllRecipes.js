@@ -52,7 +52,7 @@ export default function AllRecipes() {
         data={allRecipes}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <Pressable key={item.id} onPress={() => navigation.navigate('Detail', {recipeId: item.id})} style={{flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 34, backgroundColor: index % 3 === 0 ? '#21212120' : '#21212110', marginVertical: 2}}>
+          <Pressable key={item.id} onPress={() => navigation.navigate('Detail', {recipeId: item.id})} style={{flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 42, backgroundColor: index % 3 === 0 ? '#21212120' : '#21212110', marginVertical: 2}}>
             <View style={{width: 110, height: 110, marginVertical: 10, backgroundColor: index % 3 === 0 ? '#333333' : '#FFFFFF', borderRadius: 999, padding: 4, shadowColor: '#212121', shadowOpacity: 0.3, justifyContent: 'center', alignItems: 'center'}}>
               {item.photo ? (
                 <Image source={{uri: item.photo}} style={{width: '100%', height: '100%', resizeMode: 'cover', borderRadius: 999}}/>
@@ -61,7 +61,7 @@ export default function AllRecipes() {
               )}
             </View>
             <View>
-              <Text style={styles.text}>{item.message? item.message : item.name}</Text>
+              <Text style={[styles.text, {textAlign: index % 2 ? 'left' : 'right'}]}>{item.message? item.message : item.name}</Text>
             </View>
           </Pressable>
         )}
@@ -75,6 +75,8 @@ const styles = StyleSheet.create({
     color: '#21212185',
     fontSize: 28, 
     fontWeight: '500',
-    letterSpacing: 0.6
+    letterSpacing: 0.6,
+    width: 200,
+    textAlign: 'center'
   }
 })
