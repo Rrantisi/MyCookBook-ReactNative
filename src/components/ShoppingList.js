@@ -1,7 +1,7 @@
 import { ActivityIndicator, StyleSheet, Text,  View } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import { auth, db } from '../../firebase';
-import { doc, getDoc, updateDoc, arrayRemove } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, arrayRemove, onSnapshot } from 'firebase/firestore';
 import { Fontisto } from '@expo/vector-icons';
 
 export default function ShoppingList() {
@@ -12,17 +12,26 @@ export default function ShoppingList() {
     const fetchShoppingListItems = async() => {
   
       try {
-          const userDocRef = doc(db, "users", auth.currentUser.uid);
-          const userDocSnap = await getDoc(userDocRef);
-          const items = userDocSnap.data().shoppingList || [];
-          setItems(items);
+        // Fetch items with real-time updates
+        onSnapshot(doc(db, "users", `${auth.currentUser.uid}`), (doc) => {
+          setItems(doc.data().shoppingList)
+        });
+        
           setLoading(false);
         } catch(e){
           console.log(e)
         }
       }
       fetchShoppingListItems();
-  }, [])
+  }, []);
+
+  const handleRemoveItem = async (ingredientName) => {
+    const userDocRef = doc(db, "users", `${auth.currentUser.uid}`);
+
+    await updateDoc(userDocRef, {
+      shoppingList: arrayRemove(ingredientName)
+    })
+  }
 
   return (
     <View style={{height: '100%', marginTop: 30}}>
@@ -36,7 +45,7 @@ export default function ShoppingList() {
       {
         items.map((item, index) => (
           <View key={index} style={styles.itemWrapper}>
-            <Fontisto name={items[item.name] ? 'checkbox-active' : 'checkbox-passive'} size={18} color="#F0F0F0" style={{marginLeft: 15}} onPress={() => handleRemoveFromFavorite(item.name)}/>
+            <Fontisto name={item ? 'checkbox-active' : 'checkbox-passive'} size={18} color="#F0F0F0" style={{marginLeft: 15}} onPress={() => handleRemoveItem(item)}/>
             <Text key={index} style={styles.textMedium}>{item}</Text>
           </View>
         ))
