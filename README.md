@@ -51,9 +51,16 @@ Step into MyCookBook, the premier app for managing recipes and diving deep into 
 
 ## Built With
 
-<!-- - [React](https://reactjs.org/) -->
+- [ReactNative](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [Firebase](https://firebase.google.com/)
+- [Firestore](https://firebase.google.com/products/firestore)
+- [TheMealDB-API](https://www.themealdb.com/)
+- [Spoonacular-API](https://spoonacular.com/food-api/docs)
 
 ## Icebox Items
+
+- Implement an "Achievements Section" within the user profile to showcase and reward users for completing specific tasks, milestones, or actions within the app.
 
 ## Contact
 
