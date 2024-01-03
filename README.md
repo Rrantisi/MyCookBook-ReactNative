@@ -26,6 +26,9 @@ Step into MyCookBook, the premier app for managing recipes and diving deep into 
 
 ## Getting Started
 
+- Scan QR code 
+![MyCookBook](/assets/images/iOS-QR.png)
+
 - Explore recipes across various categories or take a chance with the recipe roulette without needing to log in.
 - Sign in to your account to explore your recipes, see saved and favorite dishes, review your shopping list, or upload new recipes to MyKitchen.
 - Unable to locate what you're looking for? Use the search button at the top to browse recipes.
