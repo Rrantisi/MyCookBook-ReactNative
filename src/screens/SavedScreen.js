@@ -54,12 +54,12 @@ export default function SavedScreen() {
 
   return (
     <ScrollView>
-      <Text style={styles.text}>Saved Recipes</Text>
       { isLoading && (
         <View>
           <ActivityIndicator size="large"/>
         </View>  
       )}
+      <Text style={styles.text}>Saved Recipes</Text>
         {recipeInfo.map((recipe, index) => (
           <Pressable key={index} onPress={() => navigation.navigate('Detail', {recipeId: recipe.id || recipe.idMeal})} style={styles.recipeContainer}>
 
