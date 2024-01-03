@@ -23,7 +23,6 @@ export default function AppNavigation() {
         <Stack.Screen name="Detail" component={RecipeDetails} />
         <Stack.Screen name="Saved" component={SavedScreen} />
         <Stack.Screen name="Favorites" component={FavoritesScreen} />
-        <Stack.Screen name="ShoppingList" component={ShoppingList} />
       </Stack.Navigator>
     </NavigationContainer>
   )
