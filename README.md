@@ -36,15 +36,17 @@ Step into MyCookBook, the premier app for managing recipes and diving deep into 
 
 ![MyCookBook](/assets/images/2.png)
 
-<!-- ![MyCookBook](/assets/images/33.png)
+![MyCookBook](/assets/images/3.png)
 
-![MyCookBook](/assets/images/44.png)
+![MyCookBook](/assets/images/4.png)
 
-![MyCookBook](/assets/images/55.png)
+![MyCookBook](/assets/images/5.png)
 
-![MyCookBook](/assets/images/66.png)
+![MyCookBook](/assets/images/6.png)
 
-![MyCookBook](/assets/images/77.png) -->
+![MyCookBook](/assets/images/7.png) 
+
+![MyCookBook](/assets/images/8.png) 
 
 
 ## Built With
