@@ -61,6 +61,8 @@ Step into MyCookBook, the premier app for managing recipes and diving deep into 
 ## Icebox Items
 
 - Implement an "Achievements Section" within the user profile to showcase and reward users for completing specific tasks, milestones, or actions within the app.
+- Implement Pagination
+- Add Recent Searches
 
 ## Contact
 
