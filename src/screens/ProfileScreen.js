@@ -34,6 +34,7 @@ export default function ProfileScreen() {
             setTotalSaved(doc.data().saved.length)
             setTotalFavorites(doc.data().favorites.length)
             setTotalListItems(doc.data().shoppingList.length)
+            setLoading(false);
           }  
         }
       })
@@ -48,9 +49,7 @@ export default function ProfileScreen() {
     handleFetchCreations();
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
-      setLoading(false);
     });
-
     return () => unsubscribe();
   }, []);
 
@@ -75,13 +74,13 @@ export default function ProfileScreen() {
 
   return (
     <ScrollView>
-      <SafeAreaView style={{flexGrow: 1, backgroundColor: '#F9F9F9'}}>
       {/* Loading Activity Indicator */}
-      { loading && (
-        <View>
+      { loading ? (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <ActivityIndicator size="large" />
         </View>  
-      )}
+      ) : (
+      <SafeAreaView style={{flexGrow: 1, backgroundColor: '#F9F9F9'}}>
         {user ? (
         <>
         {/* Welcome Message, Logout button, user status */}
@@ -149,6 +148,7 @@ export default function ProfileScreen() {
         )
       }
       </SafeAreaView>
+    )}
     </ScrollView>
   )
 }
